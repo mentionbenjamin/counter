@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { createStore } from 'redux';
 
-
+// reducer function (holds previous state, the action being dispatched
+// & returns the next state)
 const counter = (state = 0, action) => {
   switch (action.type) {
     case "INCREMENT":
@@ -14,7 +15,7 @@ const counter = (state = 0, action) => {
       return state;
   }
 };
-
+// Counter component & its props
 const Counter = ({ value, onIncrement, onDecrement }) => (
   <div>
     <h1>{value}</h1>
@@ -22,7 +23,7 @@ const Counter = ({ value, onIncrement, onDecrement }) => (
     <button onClick={onDecrement}>-</button>
   </div>
 );
-
+// holds the current state and reducer and the next state
 const store = createStore(counter);
 
 const render = () => {
@@ -35,6 +36,6 @@ const render = () => {
     document.getElementById('root')
   );
 };
-
+// subscribe to changes and re-renders UI, updating to change in state.
 store.subscribe(render);
 render();
